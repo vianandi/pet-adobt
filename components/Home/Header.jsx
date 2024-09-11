@@ -21,7 +21,7 @@ export default function Header() {
             fontSize: 15,
           }}
         >
-          Welcomeeee to wow wow wow
+          Welcome to squad
         </Text>
         <Text
           style={{

@@ -1,7 +1,8 @@
-import { View, Image, StyleSheet, ScrollView } from "react-native";
+import { View, Image, StyleSheet, Dimensions, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/FirebaseConfig";
+import { FlatList, GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function Slider() {
   const [slider, setSlider] = useState([]);
@@ -20,23 +21,39 @@ export default function Slider() {
   };
 
   return (
-    <ScrollView>
-      <View>
-        {slider.map((item, index) => (
-          <View key={index} style={{ marginBottom: 20 }}>
+    // <ScrollView>
+    //   <View>
+    //     {slider.map((item, index) => (
+    //       <View key={index} >
+    //         <Image source={{ uri: item.imageUrl }} style={styles.sliderImage} />
+    //       </View>
+    //     ))}
+    //   </View>
+    // </ScrollView>
+    <GestureHandlerRootView
+    style={{
+        marginTop:15,
+    }}>
+      <FlatList
+        data={slider}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        renderItem={({ item }) => (
+          <View>
             <Image source={{ uri: item.imageUrl }} style={styles.sliderImage} />
           </View>
-        ))}
-      </View>
-    </ScrollView>
+        )}
+        keyExtractor={(item, index) => index.toString()}
+      />
+    </GestureHandlerRootView>
   );
 }
 
 const styles = StyleSheet.create({
   sliderImage: {
-    width: "100%",
-    height: 200,
-    resizeMode: "contain",
-    backgroundColor: "blue",
+    width: Dimensions.get("screen").width * 0.8,
+    height: 170,
+    borderRadius: 20,
+    marginRight:15,
   },
 });
