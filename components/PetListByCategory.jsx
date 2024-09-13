@@ -28,7 +28,7 @@ export default function PetListByCategory() {
       <FlatList
         data={PetList}
         renderItem={({ item, index }) => <PetListItem pet={item} />}
-        numColumns={2} // Add this line to set the number of columns
+        numColumns={2} 
         keyExtractor={(item, index) => index.toString()}
       />
     </GestureHandlerRootView>

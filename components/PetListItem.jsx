@@ -1,6 +1,6 @@
-import { View, Text, Image } from "react-native";
 import React from "react";
-import Colors from "../constants/Colors";
+import { View, Text, Image } from "react-native";
+import { db } from "../config/FirebaseConfig";
 
 export default function PetListItem({ pet }) {
   return (
@@ -14,15 +14,15 @@ export default function PetListItem({ pet }) {
         borderWidth: 1,
         borderColor: "#ddd",
         borderRadius: 5,
-        width:150,
+        width: 150,
       }}
     >
       <Image
-        source={{ uri: pet?.imageUrl }}
+        source={{ uri: pet.imageUrl }}
         style={{
           width: 140,
-          height: 50,
-          backgroundColor: Colors.PRIMARY,
+          height: 40,
+          backgroundColor: "blue",
         }}
       />
       <Text>{pet?.name}</Text>
