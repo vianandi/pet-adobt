@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
-import { db } from "../config/FirebaseConfig";
 
 export default function PetListItem({ pet }) {
   return (
@@ -15,14 +14,14 @@ export default function PetListItem({ pet }) {
         borderColor: "#ddd",
         borderRadius: 5,
         width: 150,
+        
       }}
     >
       <Image
         source={{ uri: pet.imageUrl }}
         style={{
           width: 140,
-          height: 40,
-          backgroundColor: "blue",
+          height: 100,
         }}
       />
       <Text>{pet?.name}</Text>
