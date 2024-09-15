@@ -14,7 +14,6 @@ export default function PetListItem({ pet }) {
         borderColor: "#ddd",
         borderRadius: 5,
         width: 150,
-        
       }}
     >
       <Image

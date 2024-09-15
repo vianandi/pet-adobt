@@ -15,7 +15,12 @@ export default function PetListByCategory() {
 
   const GetPetList = async (category) => {
     setPetList([]);
-    const q = query(collection(db, "Pets"), where("category", "==", category));
+    let q;
+    if (category) {
+      q = query(collection(db, "Pets"), where("category", "==", category));
+    } else {
+      q = query(collection(db, "Pets"));
+    }
     const querySnapshot = await getDocs(q);
     const storage = getStorage();
 
@@ -32,17 +37,19 @@ export default function PetListByCategory() {
   };
 
   return (
-    <GestureHandlerRootView style={{ flex: 1, padding: 10 }}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <Category onCategorySelect={(value) => GetPetList(value)} />
       <FlatList
         data={PetList}
         style={{
           marginTop: 10,
+          marginBottom: 10, 
+          flex: 1, 
         }}
         renderItem={({ item, index }) => <PetListItem pet={item} />}
         numColumns={2}
         keyExtractor={(item, index) => index.toString()}
-        contentContainerStyle={{ paddingBottom: 20 }} // Tambahkan padding bawah
+        contentContainerStyle={{ paddingBottom: 10 }}
       />
     </GestureHandlerRootView>
   );
